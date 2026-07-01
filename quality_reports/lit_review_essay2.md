@@ -6,13 +6,16 @@
 
 ---
 
-## ⚠️ Read first: a framing mismatch to resolve
+## ✅ Framing RESOLVED: positivity did not replicate → disclosure surprise is the headline
 
-Your **submitted (JMR-reject) paper** is about **change in content strategy — specifically change in *positivity*** — and how its engagement effect varies by brand-mention type (organic / disclosed / undisclosed), with **promotional-intent / persuasion knowledge** as the mechanism. Data: 73 X influencers, ~129,519 posts, 2019, health-and-wellness / beauty / fashion; estimated with a `cmp` simultaneous-equations (probit + two engagement equations) model.
+**Update (2026-07-01, per author):** the **change-in-positivity results did not hold.** The JMR-reject paper's core IV is therefore *out*, and the headline is the **disclosure-surprise** story (`c1_disclose_surprise` in `validation_moderators.do`). The Intro/Results drafted in `report/` already follow this surviving framing.
 
-The **current analysis in this repo** (`validation_moderators.do`) centers **`c1_disclose_surprise`** as the headline moderator among fifteen "change/surprise" candidates, estimated with `reghdfe` — evidently a **post-rejection reframing** from "positivity change" to a broader "disclosure/content surprise" story. The Intro/Results I drafted follow the *new* framing.
+Consequences for this review:
+- The **positivity / virality strand demotes from "core IV" to background** on engagement drivers (Berger & Milkman 2012; Tellis et al. 2019; Heimbach & Hinz 2016; Han et al. 2020; Berger, Kim & Meyer 2021; Cascio Rizzo et al. 2024; Holiday et al. 2023). Keep as context, not as the paper's mechanism.
+- The **expectancy-violation / surprise** strand is now **load-bearing** and needs the EVT anchor (Burgoon 1993) it currently lacks — you cite expectancy-*disconfirmation* (Oliver 1980), which is about satisfaction, not surprise. This closes Gap G3.
+- The **disclosure** and **engagement-mode (retweet vs reply)** strands remain central.
 
-**Implication for this review:** the literature below serves *both* framings (they share the same theoretical spine), but the **expectancy-violation / surprise** strand becomes load-bearing under the new framing and is currently thin in your draft (you cite expectancy-*disconfirmation*, not expectancy-*violation*). Decide the framing before wiring citations into the Intro — see Gaps §G3.
+*Superseded note (kept for context): the submitted paper studied change in positivity × brand-mention type via a `cmp` simultaneous-equations model on 73 X influencers / ~129,519 posts (2019, health-and-wellness/beauty/fashion). That specification did not survive; the current analysis reframes around disclosure/content surprise with `reghdfe`.*
 
 ---
 
