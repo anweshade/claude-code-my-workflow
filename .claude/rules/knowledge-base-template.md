@@ -30,8 +30,8 @@ paths:
 
 | Variable | Meaning | Construction / notes |
 |----------|---------|----------------------|
-| `ln_retweetcount` | Log retweets | *(confirm: ln(x) or ln(1+x)?)* — primary outcome |
-| `ln_replycount` | Log replies | secondary outcome (weaker in validation) |
+| `ln_retweetcount` | Log retweets | `ln(retweetcount + 1)` (zeros retained) — primary outcome |
+| `ln_replycount` | Log replies | `ln(replycount + 1)` (zeros retained) — secondary outcome (weaker in validation) |
 | `BM_handhash_NN1000val` | Brand-match / disclosure class (0/1/2/3) | 0 = baseline majority; classes 1–3 rare (390 / 1,976 / 4,771) |
 | `BM_handhash_NN1000valprior_cum` | Cumulative prior on the match | control (`$prior`) |
 | `influencercode` | Influencer id | clustering + FE unit (~150 unique) |
