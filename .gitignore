@@ -82,6 +82,14 @@ quality_reports/diagnoses/*
 # R analysis outputs (generated artifacts; keep scripts, ignore outputs)
 scripts/R/_outputs/
 
+# Stata / Python analysis outputs (generated artifacts; keep scripts, ignore outputs)
+scripts/stata/_outputs/
+scripts/python/_outputs/
+
+# Confidential data — keep the folder README, ignore all data contents
+data/**
+!data/README.md
+
 # Output artifacts — uncomment lines below based on your preference
 # *.rds
 # output/**/*.rds
