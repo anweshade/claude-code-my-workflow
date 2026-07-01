@@ -73,6 +73,7 @@ paths:
 | 2026-07-01 | Validation = Holm family correction + repeated 50/50 CV; single 70/30 holdout is underpowered | Thin treated cells in holdout; cite CV, not single split |
 | 2026-07-01 | Main c1 effect on undisclosed (class 2): retweets +4.94*** , replies −4.76** (`tab_main_c1`); organic (class 3) replies −3.52*** | Full-sample `reghdfe`; γ₁ (disclosed, 390 posts) drops as collinear — not identified |
 | 2026-07-01 | Per-SD (std): undisclosed +0.181*** retweets / −0.174** replies; organic −0.129*** replies (`tab_main_c1_std`) | Report per-SD (≈ +20% / −16% / −12%); raw coeffs misleading since surprise SD ≈ .037 |
+| 2026-07-01 | Mechanism = persuasion-knowledge (TENTATIVE). NOT established: `Mediation_c1_indirect_effects.csv` empty; mechanism spec uses `c1_infl_disclose_rate` ≠ main `c1_disclose_surprise` | z_pv_score main effects run opposite to c1 (−.025** rt / +.045*** rp); authentic_stdM ns. Reconcile variable + compute indirect effects before asserting |
 
 ## Tolerance Thresholds
 

@@ -61,9 +61,18 @@ The key contrast is on the **undisclosed × surprise** term ($\gamma_2$): surpri
 ($-4.76$, $p<.05$) — a sign flip that is stable across resampling (recovered in 95% of retweet
 splits and 74% of reply splits; see §4). Organic content shows the same reply penalty
 ($-3.52$, $p<.01$) with no retweet effect. Substantively, surprising undisclosed content
-travels further while inviting less conversation, consistent with [one-sentence theoretical
-mechanism — fill in]. The disclosed-class interaction ($\gamma_1$; 390 posts) drops out as
-collinear and is not identified, so we make no claim about it.
+travels further while inviting less conversation. A **persuasion-knowledge** account fits this
+contrast: because a surprising, undisclosed brand association is not recognized as advertising,
+it is amplified relatively uncritically (more retweets) while failing to trigger the
+scrutinizing conversation that recognized sponsorship attracts (fewer replies). The
+disclosed-class interaction ($\gamma_1$; 390 posts) drops out as collinear and is not
+identified, so we make no claim about it.
+<!-- TENTATIVE mechanism — do not treat as established. Pending: (1) the formal mediation
+     (Mediation_c1_indirect_effects.csv is currently empty — indirect effects not computed);
+     (2) reconciliation of the mechanism-spec variable c1_infl_disclose_rate with the main
+     moderator c1_disclose_surprise. Persuasion (z_pv_score) main effects run opposite to the
+     c1 effect (retweets -.025**, replies +.045***), which motivates this account; authenticity
+     (authentic_stdM) main effects are ns. Confirm before asserting. -->
 
 Because surprise is concentrated near zero (mean 0.003, SD 0.037 on a 0–1 scale), the raw
 per-unit coefficients overstate any realistic change. Scaling to a **one-standard-deviation**
