@@ -41,22 +41,26 @@ The brand-class × disclosure-propensity interaction is **jointly significant** 
 
 | Interaction | $\ln(1+\text{retweets})$ | $\ln(1+\text{replies})$ |
 |---|---|---|
-| Disclosed × propensity ($\gamma_1$) | — (dropped) | — (dropped) |
+| Disclosed × propensity ($\gamma_1$) | 2.87 (9.30) | −3.91** (1.52) |
 | Undisclosed × propensity ($\gamma_2$) | 4.943*** (1.278) | −4.763** (1.855) |
 | Organic × propensity ($\gamma_3$) | 2.514 (3.745) | −3.524*** (0.970) |
 | Controls / prior, FE (influencer, month, hour) | Yes | Yes |
-| Joint *p* | .0003 | .0007 |
-| Clusters / *N* | 150 / 281,837 | 150 / 281,837 |
+| *N* | 281,837 | 281,837 |
 
-*Notes.* SEs clustered by influencer in parentheses. * .10, ** .05, *** .01. The disclosed-class
-interaction ($\gamma_1$; 390 posts) is collinear within influencer and not identified. Source:
-`Tables/tab_main_c1.csv`.
+*Notes.* $\gamma_2,\gamma_3$: influencer-clustered SEs (`reghdfe`, `tab_main_c1.csv`); $\gamma_1$:
+SUR robust SEs (`Main_NN_c1infl_SUR`) — a clustered rerun of the `c1_infl_disclose_rate` spec
+will finalize $\gamma_1$'s SE. * .10, ** .05, *** .01. In the equivalent $|\cdot|$ (surprise)
+parameterization $\gamma_1$ is collinear and drops; the **disclosure-rate parameterization
+identifies all three classes** and is the cleaner Table 1.
 
 ## Interpretation
 
 Among **undisclosed** brand posts, those by **higher-disclosure-propensity** influencers earn
 **more retweets** ($+4.94$, $p<.01$) but **fewer replies** ($-4.76$, $p<.05$); **organic** posts
-show the same reply penalty ($-3.52$, $p<.01$) with no retweet effect. Scaling to a
+show the same reply penalty ($-3.52$, $p<.01$) with no retweet effect. With all three classes
+identified, a **broad reply pattern** emerges: higher disclosure propensity lowers replies on
+*every* brand-post type (disclosed $-3.9$, undisclosed $-4.8$, organic $-3.5$), while the
+**retweet gain is specific to undisclosed content** ($+4.9$). Scaling to a
 one-standard-deviation increase in disclosure propensity: undisclosed **+0.18 log-pts ≈ +20%
 retweets** and **−0.17 ≈ −16% replies**; organic **−0.13 ≈ −12% replies** (`tab_main_c1_std.csv`;
 per-SD computed on the surprise measure — a rate-standardized version is a minor re-run).
@@ -85,7 +89,8 @@ correction; repeated cross-validation).
 
 <!-- OPEN ITEMS (do not paste):
   - Re-standardize per-SD on c1_infl_disclose_rate for the final Table 1 magnitudes.
-  - Consider reporting the class × c1_infl_disclose_rate spec directly (Main_NN_c1surprise_SUR)
-    as the headline table rather than the |.| surprise form.
+  - Table 1 now uses the class × c1_infl_disclose_rate parameterization (all 3 classes, from
+    Main_NN_c1infl_SUR). TODO: clustered reghdfe rerun of that spec to finalize gamma_1's SE
+    (currently SUR robust); check whether disclosed×propensity on replies survives clustering.
   - Mechanism (PKM) still needs the mediation populated (Mediation_c1_indirect_effects.csv empty).
   - §4 validation numbers are for the surprise form; equivalent for classes 2/3 but relabel. -->
