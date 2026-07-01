@@ -220,6 +220,35 @@ preserve
     display as text "signcons_b2 = fraction with theory-predicted sign on undisclosed x surprise (b2)"
 restore
 
+* =============================================================================
+* PART D — Main coefficient table for c1 (full sample) -> Table 1
+* =============================================================================
+* Requires estout. If missing, run once:  ssc install estout, replace
+capture which esttab
+if _rc {
+    display as error "esttab not found — skipping Table 1. Run: ssc install estout, replace"
+}
+else {
+    capture drop _cvhold
+    eststo clear
+    quietly reghdfe ln_retweetcount ib0.BM_handhash_NN1000val##c.c1_disclose_surprise $controls $prior, absorb($fes_abs) vce(cluster influencercode)
+    eststo m_rt
+    quietly reghdfe ln_replycount   ib0.BM_handhash_NN1000val##c.c1_disclose_surprise $controls $prior, absorb($fes_abs) vce(cluster influencercode)
+    eststo m_rp
+
+    local ikeep 1.BM_handhash_NN1000val#c.c1_disclose_surprise 2.BM_handhash_NN1000val#c.c1_disclose_surprise 3.BM_handhash_NN1000val#c.c1_disclose_surprise
+
+    esttab m_rt m_rp using "${tables}/tab_main_c1.tex", replace ///
+        booktabs label keep(`ikeep') b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) ///
+        stats(N N_clust, fmt(%9.0fc %9.0fc) labels("Observations" "Clusters")) ///
+        mtitles("ln(1+retweets)" "ln(1+replies)") ///
+        nonotes addnote("SEs clustered by influencer. Controls, prior, and influencer/month/hour FE included.")
+    esttab m_rt m_rp using "${tables}/tab_main_c1.csv", replace ///
+        keep(`ikeep') b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) ///
+        stats(N N_clust, fmt(%9.0fc %9.0fc)) mtitles("ln1p_retweets" "ln1p_replies")
+    display as result "Wrote ${tables}/tab_main_c1.{tex,csv}"
+}
+
 * ---- Summary ----------------------------------------------------------------
 display _newline as result "Validation complete."
 display as text "  Out-of-sample : ${tables}/Validation_OOS.csv"
