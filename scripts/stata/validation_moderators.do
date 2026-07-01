@@ -238,15 +238,23 @@ else {
 
     local ikeep 1.BM_handhash_NN1000val#c.c1_disclose_surprise 2.BM_handhash_NN1000val#c.c1_disclose_surprise 3.BM_handhash_NN1000val#c.c1_disclose_surprise
 
-    esttab m_rt m_rp using "${tables}/tab_main_c1.tex", replace ///
-        booktabs label keep(`ikeep') b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) ///
-        stats(N N_clust, fmt(%9.0fc %9.0fc) labels("Observations" "Clusters")) ///
-        mtitles("ln(1+retweets)" "ln(1+replies)") ///
-        nonotes addnote("SEs clustered by influencer. Controls, prior, and influencer/month/hour FE included.")
-    esttab m_rt m_rp using "${tables}/tab_main_c1.csv", replace ///
-        keep(`ikeep') b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) ///
-        stats(N N_clust, fmt(%9.0fc %9.0fc)) mtitles("ln1p_retweets" "ln1p_replies")
+    esttab m_rt m_rp using "${tables}/tab_main_c1.tex", replace booktabs label keep(`ikeep') b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N N_clust, fmt(%9.0fc %9.0fc) labels("Observations" "Clusters")) mtitles("ln(1+retweets)" "ln(1+replies)") nonotes addnote("SEs clustered by influencer. Controls, prior, and influencer/month/hour FE included.")
+    esttab m_rt m_rp using "${tables}/tab_main_c1.csv", replace keep(`ikeep') b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N N_clust, fmt(%9.0fc %9.0fc)) mtitles("ln1p_retweets" "ln1p_replies")
     display as result "Wrote ${tables}/tab_main_c1.{tex,csv}"
+
+    * Standardized surprise: interaction coefficient = effect per 1 SD of surprise
+    * (raw coefficients are ~5 log-pts per one FULL unit; surprise SD is only ~0.037).
+    capture drop z_c1
+    egen double z_c1 = std(c1_disclose_surprise)
+    eststo clear
+    quietly reghdfe ln_retweetcount ib0.BM_handhash_NN1000val##c.z_c1 $controls $prior, absorb($fes_abs) vce(cluster influencercode)
+    eststo m_rt_z
+    quietly reghdfe ln_replycount   ib0.BM_handhash_NN1000val##c.z_c1 $controls $prior, absorb($fes_abs) vce(cluster influencercode)
+    eststo m_rp_z
+    local ikeepz 1.BM_handhash_NN1000val#c.z_c1 2.BM_handhash_NN1000val#c.z_c1 3.BM_handhash_NN1000val#c.z_c1
+    esttab m_rt_z m_rp_z using "${tables}/tab_main_c1_std.tex", replace booktabs label keep(`ikeepz') b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N N_clust, fmt(%9.0fc %9.0fc) labels("Observations" "Clusters")) mtitles("ln(1+retweets)" "ln(1+replies)") nonotes addnote("Per 1 SD of disclosure surprise. SEs clustered by influencer; controls, prior, influencer/month/hour FE.")
+    esttab m_rt_z m_rp_z using "${tables}/tab_main_c1_std.csv", replace keep(`ikeepz') b(3) se(3) star(* 0.10 ** 0.05 *** 0.01) stats(N N_clust, fmt(%9.0fc %9.0fc)) mtitles("ln1p_retweets" "ln1p_replies")
+    display as result "Wrote ${tables}/tab_main_c1_std.{tex,csv} (per-SD)"
 }
 
 * ---- Summary ----------------------------------------------------------------

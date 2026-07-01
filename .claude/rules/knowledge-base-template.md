@@ -32,7 +32,7 @@ paths:
 |----------|---------|----------------------|
 | `ln_retweetcount` | Log retweets | `ln(retweetcount + 1)` (zeros retained) — primary outcome |
 | `ln_replycount` | Log replies | `ln(replycount + 1)` (zeros retained) — secondary outcome (weaker in validation) |
-| `BM_handhash_NN1000val` | Brand-match / disclosure class (0/1/2/3) | 0 = baseline majority; classes 1–3 rare (390 / 1,976 / 4,771) |
+| `BM_handhash_NN1000val` | Brand-match / disclosure class (0/1/2/3) | 0 = no match (base); 1 = disclosed; 2 = undisclosed; 3 = organic. Treated cells rare (390 / 1,976 / 4,771) |
 | `BM_handhash_NN1000valprior_cum` | Cumulative prior on the match | control (`$prior`) |
 | `influencercode` | Influencer id | clustering + FE unit (~150 unique) |
 
@@ -40,7 +40,7 @@ paths:
 
 | Moderator | Construct | Predicted sign / role |
 |-----------|-----------|-----------------------|
-| `c1_disclose_surprise` | Disclosure surprise | **Headline moderator** — survives Holm + CV |
+| `c1_disclose_surprise` | Disclosure surprise | **Headline moderator** — survives Holm + CV. Unstandardized; mean .003, SD .037, range 0–1 (report per-SD) |
 | `c2_brand_momentum` | Brand momentum | |
 | `c3_topic_drift` | Topic drift | |
 | `c4_voice_consistency` | Voice consistency | |
@@ -71,6 +71,8 @@ paths:
 | 2026-07-01 | Stata primary; R/Python secondary | Essay 2 analysis is Stata (`reghdfe`, `postfile`) |
 | 2026-07-01 | Retweets = primary outcome; replies = corroborating | Replies weaker: 57% CV replication / 74% sign-consistency vs 83% / 95% |
 | 2026-07-01 | Validation = Holm family correction + repeated 50/50 CV; single 70/30 holdout is underpowered | Thin treated cells in holdout; cite CV, not single split |
+| 2026-07-01 | Main c1 effect on undisclosed (class 2): retweets +4.94*** , replies −4.76** (`tab_main_c1`); organic (class 3) replies −3.52*** | Full-sample `reghdfe`; γ₁ (disclosed, 390 posts) drops as collinear — not identified |
+| 2026-07-01 | Per-SD (std): undisclosed +0.181*** retweets / −0.174** replies; organic −0.129*** replies (`tab_main_c1_std`) | Report per-SD (≈ +20% / −16% / −12%); raw coeffs misleading since surprise SD ≈ .037 |
 
 ## Tolerance Thresholds
 
