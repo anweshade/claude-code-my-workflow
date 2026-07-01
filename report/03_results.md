@@ -47,11 +47,11 @@ The brand-class × disclosure-propensity interaction is **jointly significant** 
 | Controls / prior, FE (influencer, month, hour) | Yes | Yes |
 | *N* | 281,837 | 281,837 |
 
-*Notes.* $\gamma_2,\gamma_3$: influencer-clustered SEs (`reghdfe`, `tab_main_c1.csv`); $\gamma_1$:
-SUR robust SEs (`Main_NN_c1infl_SUR`) — a clustered rerun of the `c1_infl_disclose_rate` spec
-will finalize $\gamma_1$'s SE. * .10, ** .05, *** .01. In the equivalent $|\cdot|$ (surprise)
-parameterization $\gamma_1$ is collinear and drops; the **disclosure-rate parameterization
-identifies all three classes** and is the cleaner Table 1.
+*Notes.* All SEs **influencer-clustered** (`reghdfe`, `Table1_propensity_clustered.csv`); $N=281{,}837$,
+150 clusters. * .10, ** .05, *** .01. In the equivalent $|\cdot|$ (surprise) parameterization
+$\gamma_1$ is collinear and drops; the **disclosure-rate parameterization identifies all three
+classes** and is the Table 1 we report. $\gamma_1$ (disclosed × propensity) on replies is
+$-3.91$ ($p<.05$) under clustering — the reply penalty holds for disclosed posts too.
 
 ## Interpretation
 
@@ -60,10 +60,19 @@ Among **undisclosed** brand posts, those by **higher-disclosure-propensity** inf
 show the same reply penalty ($-3.52$, $p<.01$) with no retweet effect. With all three classes
 identified, a **broad reply pattern** emerges: higher disclosure propensity lowers replies on
 *every* brand-post type (disclosed $-3.9$, undisclosed $-4.8$, organic $-3.5$), while the
-**retweet gain is specific to undisclosed content** ($+4.9$). Scaling to a
-one-standard-deviation increase in disclosure propensity: undisclosed **+0.18 log-pts ≈ +20%
-retweets** and **−0.17 ≈ −16% replies**; organic **−0.13 ≈ −12% replies** (`tab_main_c1_std.csv`;
-per-SD computed on the surprise measure — a rate-standardized version is a minor re-run).
+**retweet gain is specific to undisclosed content** ($+4.9$). The joint tests are significant
+under influencer-clustered inference (retweets $F(3,149)=5.71$, $p=.0010$; replies
+$F(3,149)=5.51$, $p=.0013$).
+
+Scaling to a one-standard-deviation increase in disclosure propensity (clustered,
+`Table1_propensity_clustered.csv`): undisclosed **+0.030 ≈ +3.0% retweets** ($p<.01$) and
+**−0.029 ≈ −2.9% replies** ($p<.05$); organic **−0.021 ≈ −2.1% replies** ($p<.01$); disclosed
+**−0.024 ≈ −2.4% replies** ($p<.05$). **These per-SD effects are modest**, and honestly so:
+disclosure propensity varies little across influencers (SD ≈ 0.006 on the 0–1 rate scale, since
+disclosure is rare — 390 of 281,837 posts), so the moderation is **statistically robust but
+economically small**, reflecting a minority of higher-disclosing creators. *(The earlier
+"+20%/−16%" figures were per SD of the wider $|\cdot|$ surprise measure and overstated the
+effect; the rate-standardized numbers here are the correct ones.)*
 
 Substantively, an undisclosed brand post from a creator who *usually* discloses is atypical for
 that creator, and audiences appear to amplify it more while engaging in less conversation. A
@@ -88,9 +97,10 @@ correction; repeated cross-validation).
 ---
 
 <!-- OPEN ITEMS (do not paste):
-  - Re-standardize per-SD on c1_infl_disclose_rate for the final Table 1 magnitudes.
-  - Table 1 now uses the class × c1_infl_disclose_rate parameterization (all 3 classes, from
-    Main_NN_c1infl_SUR). TODO: clustered reghdfe rerun of that spec to finalize gamma_1's SE
-    (currently SUR robust); check whether disclosed×propensity on replies survives clustering.
+  - DONE: Table 1 clustered (all 3 classes), gamma_1 reply penalty holds (-3.91**), per-SD
+    standardized on the disclosure rate (Table1_propensity_clustered.csv). Joint p .001/.0013.
+  - Honest caveat now in text: per-SD effect is small (~3%) because disclosure propensity has
+    little cross-influencer variation (SD ~0.006; disclosure rare). Consider whether the
+    economic magnitude is enough to headline, or lead with the qualitative pattern.
   - Mechanism (PKM) still needs the mediation populated (Mediation_c1_indirect_effects.csv empty).
   - §4 validation numbers are for the surprise form; equivalent for classes 2/3 but relabel. -->
