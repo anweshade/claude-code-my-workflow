@@ -41,10 +41,12 @@ the influencer's disclosure propensity.
 
 Disclosure propensity moves the two engagement modes in **opposite directions**. Among
 **undisclosed** brand content, a one-standard-deviation increase in the influencer's baseline
-disclosure rate is associated with about **+20% more retweets** but **−16% fewer replies**;
-**organic** content shows a comparable reply penalty (**−12%**). The pattern is the standout
-moderator under family-wise correction across fifteen candidates on both outcomes and replicates
-in most cross-validation splits (§4). A **persuasion-knowledge** reading fits: an undisclosed
+disclosure rate is associated with about **+3% more retweets** but **−3% fewer replies**;
+**organic** content shows a comparable reply penalty. The interaction is jointly significant
+under influencer-clustered inference (retweets $p=.001$, replies $p=.001$) and is the standout
+moderator under family-wise correction across fifteen candidates on both outcomes. The effects
+are statistically robust but **modest in size** (disclosure is rare, so propensity varies little
+across creators). A **persuasion-knowledge** reading fits: an undisclosed
 post from a habitual discloser is atypical and not read as advertising, earning uncritical
 amplification but little scrutinizing conversation. Because the moderator is influencer-level,
 this is a **between-influencer** contrast; a stricter within-post "surprise" test is only
