@@ -75,6 +75,8 @@ paths:
 | 2026-07-01 | Per-SD (std): undisclosed +0.181*** retweets / −0.174** replies; organic −0.129*** replies (`tab_main_c1_std`) | Report per-SD (≈ +20% / −16% / −12%); raw coeffs misleading since surprise SD ≈ .037 |
 | 2026-07-01 | Mechanism = persuasion-knowledge (TENTATIVE). NOT established: `Mediation_c1_indirect_effects.csv` empty; mechanism spec uses `c1_infl_disclose_rate` ≠ main `c1_disclose_surprise` | z_pv_score main effects run opposite to c1 (−.025** rt / +.045*** rp); authentic_stdM ns. Reconcile variable + compute indirect effects before asserting |
 | 2026-07-01 | **Change-in-positivity results did NOT hold.** Headline = disclosure surprise; positivity strand demoted to background | Reason for the post-JMR-reject pivot. Positivity was the submitted paper's core IV; it did not replicate. EVT (Burgoon 1993) now the load-bearing theory, not expectancy-disconfirmation |
+| 2026-07-01 | `c1_disclose_surprise = |1{disclosed} − c1_infl_disclose_rate|`; identifying variation for class 2/3 = influencer-level disclosure rate (constant within influencer) | Reconciles c1_disclose_surprise ≡ c1_infl_disclose_rate (mechanical decomposition); explains γ₁ (class 1) collinear-drop; moderation is BETWEEN-influencer, not tweet-level surprise → temper §3 "surprise" language |
+| 2026-07-01 | Current sample = 294,557 raw tweets / 205 influencers → 281,837 English (est.) / 150 influencers, 2019, X. Brand via 943-brand LLM gazetteer (handle+hashtag); disclosure 4-class via Ershov-He-Seiler classifier | Data rebuilt & expanded vs JMR draft (73 infl / 129,519 posts). 205→150 influencer reduction still to document |
 
 ## Tolerance Thresholds
 

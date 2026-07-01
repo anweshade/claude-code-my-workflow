@@ -54,6 +54,13 @@ outcomes on the full sample (joint test of $\gamma_1=\gamma_2=\gamma_3=0$):
 The disclosed-class interaction ($\gamma_1$; 390 posts) is dropped as collinear within the
 fixed-effect + control structure and is not identified. Source: `Tables/tab_main_c1.csv`.
 
+> **⚠ Identification caveat (see §2).** Because disclosure surprise is
+> $|\mathbb{1}[\text{disclosed}] - \bar d_j|$ with $\bar d_j$ constant within influencer, the
+> identifying variation in the class-2 and class-3 interactions is the **influencer-level baseline
+> disclosure rate**, not a within-post surprise. The moderation is therefore effectively
+> *between-influencer*; the "surprising undisclosed content" reading below is a gloss and should be
+> tempered to "undisclosed/organic content by creators with atypical disclosure propensity."
+
 ## Interpretation
 
 The key contrast is on the **undisclosed × surprise** term ($\gamma_2$): surprising
