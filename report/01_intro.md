@@ -6,24 +6,27 @@
 
 ## 1. Motivation
 
-Influencer marketing has become a primary channel for brand communication [CITE market-size /
-industry stat], and with it has come regulatory attention to **disclosure**: when creators are
-paid to promote a brand, they are expected to say so [CITE FTC endorsement guides / platform
-policy]. A large literature studies whether disclosure helps or hurts sponsored-content
-performance [CITE disclosure-effects literature], generally framing disclosure as a binary
-"disclosed vs. not." Much less is known about how the **surprise** of a disclosure — how far a
+Influencer marketing has become a primary channel for brand communication — the industry
+reached roughly \$24 billion in 2024, more than tripling since 2019 (Statista) — and with it
+has come regulatory attention to **disclosure**: when creators are paid to promote a brand,
+they are expected to say so (the Federal Trade Commission's Endorsement Guides). A large
+literature studies whether disclosure helps or hurts sponsored-content performance
+(e.g., Boerman, Willemsen, and Van Der Aa 2017; Evans et al. 2017; Eisend et al. 2020;
+Cao and Belo 2023), generally framing disclosure as a binary "disclosed vs. not." Much less is known about how the **surprise** of a disclosure — how far a
 post's disclosure behavior departs from what the audience has come to expect from that
 creator — shapes engagement.
 
 ## 2. Tension / gap
 
 Two gaps motivate this paper. First, "engagement" is usually treated as a single quantity, but
-audiences can respond in distinct modes: they can **amplify** content (retweet/share) or
-**converse** with it (reply). These modes need not move together, and a disclosure effect that
-raises one while lowering the other would be invisible to a pooled engagement measure. Second,
-the *expectedness* of disclosure — not just its presence — plausibly drives reactions:
-[CITE expectancy-violation / persuasion-knowledge theory]. A surprising, unflagged brand
-association may be processed very differently from a routine one.
+audiences can respond in distinct modes: they can **amplify** content (retweet/share, a public
+word-of-mouth act) or **converse** with it (reply, a more private one) (Zhang, Moe, and
+Schweidel 2017). These modes need not move together, and a disclosure effect that raises one
+while lowering the other would be invisible to a pooled engagement measure. Second,
+the *expectedness* of disclosure — not just its presence — plausibly drives reactions: an
+unexpected brand behavior violates audience expectations (Expectancy Violations Theory,
+Burgoon 1993) and can activate persuasion knowledge (Friestad and Wright 1994). A surprising,
+unflagged brand association may be processed very differently from a routine one.
 
 ## 3. This paper
 
@@ -47,7 +50,8 @@ little scrutinizing conversation (tentative; see §3).
 
 ## 5. Contribution
 
-We contribute [CITE positioning] by (i) separating **amplification from conversation** and
+We contribute to the influencer-marketing literature (e.g., Hughes, Swaminathan, and Brooks
+2019; Lou and Yuan 2019; Leung et al. 2022) by (i) separating **amplification from conversation** and
 showing a disclosure moderator that pushes them apart; (ii) introducing **disclosure surprise**
 — expectedness, not just presence — as the operative construct; and (iii) subjecting the
 finding to an unusually demanding validation protocol (family-wise correction, repeated
@@ -56,9 +60,7 @@ cross-validation, out-of-sample holdout).
 ---
 
 <!-- OPEN ITEMS (do not paste):
-  - All [CITE] tags need your reference set (market size, FTC guides, disclosure-effects lit,
-    expectancy-violation / persuasion-knowledge theory, positioning).
-  - Confirm exact influencer N.
-  - The one-sentence finding in §4 and the contribution framing should be revisited once the
-    mechanism (below) is settled and once you decide whether retweets or the retweet/reply
-    *contrast* is the headline. -->
+  - Citations wired in from lit_review_essay2.md (framing locked: disclosure surprise, not
+    positivity). Verify the Statista figure and FTC-Guides phrasing against your preferred source.
+  - Confirm exact influencer N (~150 in the current analysis; the JMR draft used 73).
+  - Mechanism still tentative (persuasion knowledge; EVT added) — pending the mediation fix. -->
