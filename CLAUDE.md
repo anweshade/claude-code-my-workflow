@@ -1,12 +1,14 @@
-# CLAUDE.MD -- Academic Project Development with Claude Code
+# CLAUDE.MD -- Influencer Marketing Research Project
 
-<!-- HOW TO USE: Replace [BRACKETED PLACEHOLDERS] with your project info.
-     Customize Beamer environments and CSS classes for your theme.
-     Keep this file under ~150 lines — Claude loads it every session.
-     See the guide at docs/workflow-guide.html for full documentation. -->
+<!-- This repo is a fork of an academic-slides+econometrics workflow template.
+     It has been adapted for a PROSE RESEARCH REPORT on influencer marketing:
+     data + analysis + figures + Markdown drafts live here; the final report is
+     written in Word / Google Docs. Slide/LaTeX/teaching machinery is kept on
+     disk but DORMANT (see "What Applies / What to Ignore"). Do not delete it —
+     it keeps future upstream merges clean. -->
 
-**Project:** [YOUR PROJECT NAME]
-**Institution:** [YOUR INSTITUTION]
+**Project:** Influencer Marketing (Essay 2) — *working title, confirm*
+**Institution:** Kelley School of Business, Indiana University
 **Branch:** main
 
 ---
@@ -14,32 +16,37 @@
 ## Core Principles
 
 - **Plan first** -- enter plan mode before non-trivial tasks; save plans to `quality_reports/plans/`
-- **Verify after** -- compile/render and confirm output at the end of every task
-- **Single source of truth** -- Beamer `.tex` is authoritative; Quarto `.qmd` derives from it
-- **Quality gates** -- nothing ships below 80/100
-- **[LEARN] tags** -- when corrected, save `[LEARN:category] wrong → right` to [MEMORY.md](MEMORY.md)
+- **Verify after** -- re-run analysis / re-check outputs and confirm results at the end of every task
+- **Single source of truth** -- analysis **outputs** (Stata primary; R / Python secondary) + **Markdown working drafts** in this repo are authoritative; **Word / Google Docs is the final rendering surface**, kept in sync *from* the repo drafts (never the reverse)
+- **Quality gates** -- advisory for this project (see note below): use the review skills, not a numeric score, as the real gate
+- **[LEARN] tags** -- when corrected, save `[LEARN:category] wrong → right` to [MEMORY.md](MEMORY.md) (generic) or `.claude/state/personal-memory.md` (project-specific)
 
-Cross-session context lives in [MEMORY.md](MEMORY.md); past plans, specs, and session logs are in [quality_reports/](quality_reports/).
+Cross-session context lives in [MEMORY.md](MEMORY.md); past plans, specs, decision records, and session logs are in [quality_reports/](quality_reports/).
 
 ---
 
 ## Folder Structure
 
 ```
-[YOUR-PROJECT]/
+my-project/
 ├── CLAUDE.MD                    # This file
 ├── .claude/                     # Rules, skills, agents, hooks
-├── Bibliography_base.bib        # Centralized bibliography
-├── Figures/                     # Figures and images
-├── Preambles/header.tex         # LaTeX headers
-├── Slides/                      # Beamer .tex files
-├── Quarto/                      # RevealJS .qmd files + theme
-├── docs/                        # GitHub Pages (auto-generated)
-├── scripts/                     # Utility scripts + R code
-├── quality_reports/             # Plans, session logs, merge reports, decision records
-├── explorations/                # Research sandbox (see rules)
-├── templates/                   # Session log, quality report templates
-└── master_supporting_docs/      # Papers and existing slides
+├── data/                        # [ACTIVE] Raw + processed data (guarded by confidential-data rule)
+├── report/                      # [ACTIVE] Markdown working drafts of report sections
+├── scripts/stata/               # [ACTIVE] Stata .do files — PRIMARY analysis (Essay 2)
+├── scripts/R/                   # [ACTIVE] R analysis (secondary); outputs in scripts/R/_outputs/
+├── scripts/python/              # [ACTIVE] Python analysis (secondary)
+├── Figures/                     # [ACTIVE] Figures and images
+├── quality_reports/             # [ACTIVE] Plans, specs, decision records, session logs
+├── Bibliography_base.bib        # [ACTIVE] Centralized bibliography
+├── explorations/                # [ACTIVE] Research sandbox
+├── templates/                   # [ACTIVE] Spec / session-log / decision-record templates
+│
+├── Slides/                      # [DORMANT] Beamer .tex — not used in this project
+├── Quarto/                      # [DORMANT] RevealJS .qmd + theme
+├── Preambles/header.tex         # [DORMANT] LaTeX headers
+├── docs/                        # [DORMANT] GitHub Pages (slides site)
+└── master_supporting_docs/      # [ACTIVE] Papers and background docs
 ```
 
 ---
@@ -47,79 +54,62 @@ Cross-session context lives in [MEMORY.md](MEMORY.md); past plans, specs, and se
 ## Commands
 
 ```bash
-# LaTeX (3-pass, XeLaTeX only)
-cd Slides && TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
-BIBINPUTS=..:$BIBINPUTS bibtex file
-TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
-TEXINPUTS=../Preambles:$TEXINPUTS xelatex -interaction=nonstopmode file.tex
+# Run Stata do-file (PRIMARY analysis; batch mode)
+stata-mp -b do scripts/stata/validation.do
 
-# Deploy Quarto to GitHub Pages
-./scripts/sync_to_docs.sh LectureN
+# Run R analysis (secondary; numbered pipeline; outputs land in scripts/R/_outputs/)
+Rscript scripts/R/01_explore.R
 
-# Quality score
-python scripts/quality_score.py Quarto/file.qmd
+# Run Python analysis (secondary)
+python scripts/python/analyze.py
 
-# Palette sync (LaTeX ↔ SCSS)
-./scripts/check-palette-sync.sh
-
-# Surface-count sync (README ↔ CLAUDE.md ↔ guide ↔ landing page)
-./scripts/check-surface-sync.sh
+# Quality score — LIMITATION: scores only .qmd / .tex / .R; it ERRORS on .md, .py, and .do.
+# Our main artifact types (Markdown drafts, Stata, Python) are NOT scorable, so treat
+# the numeric gate as advisory and lean on the review skills below.
+python scripts/quality_score.py scripts/R/file.R
 ```
 
-**Palette contract:** color names in `Preambles/header.tex` must match SCSS variables in `Quarto/theme-template.scss`. See [`Preambles/README.md`](Preambles/README.md).
+---
+
+## Quality Thresholds (advisory for this project)
+
+The numeric 80/90/95 gate came from the slides template and only scores `.qmd/.tex/.R`.
+For a prose+data project the **real quality mechanism is the review skills**:
+
+- **Prose drafts:** `/proofread` → `/humanize` → `/verify-claims` → `/review-paper`
+- **Analysis:** `/review-r` + `/audit-reproducibility` (and `/stata-replication` for Stata)
+
+**Do not run `./scripts/install-hooks.sh`** yet — its pre-commit hook adds surface-sync (template maintenance) + R/qmd/tex scoring that mostly won't apply here and would only add friction. Revisit if we later add `.md`/`.py` scorers.
 
 ---
 
-## Quality Thresholds (advisory)
+## What Applies / What to Ignore
 
-| Score | Checkpoint | Meaning |
-|-------|------|---------|
-| 80 | Commit | Good enough to save |
-| 90 | PR | Ready for deployment |
-| 95 | Excellence | Aspirational |
+**A — Applies directly (use freely):**
+`/stata-replication` `/audit-reproducibility` `/replication-package` `/capture-environment`
+`/review-paper` `/seven-pass-review` `/review-r` `/verify-claims` `/proofread` `/humanize`
+`/submission-disclosures` `/respond-to-referees` `/lit-review` `/interview-me`
+`/research-ideation` `/diagnose` `/commit` `/learn` `/checkpoint` `/context-status`
+(`/data-analysis` is R-native — usable for the secondary R work, not the Stata pipeline)
 
-Enforced by `/commit` (halts + asks for override) **and** — once you run `./scripts/install-hooks.sh` — by a real git pre-commit hook (`.githooks/pre-commit`) that runs the surface-sync + quality (≥80) gates on every commit. Bypass sparingly with `SKIP_QUALITY_GATE=1` or `--no-verify`.
+**B — Adapt before trusting (customized for this project):**
+- `quality_score.py` — doesn't score `.md`/`.py` (see above)
+- Knowledge base (`.claude/rules/knowledge-base-template.md`) — repurposed as a **marketing-metrics + decisions registry**
+- `domain-reviewer` agent — retuned for **influencer-marketing substance**, not econometrics slides
 
----
-
-## Skills Quick Reference
-
-The full table of all skills lives in [README.md](README.md#skills-claudeskills). Most-used, by workflow:
-
-- **Slides / teaching:** `/create-lecture` `/compile-latex` `/deploy` `/qa-quarto` `/slide-excellence` `/syllabus` `/teach-from-paper` `/scaffold-exercises`
-- **Papers / review:** `/review-paper` (`--peer`) `/seven-pass-review` `/respond-to-referees` `/verify-claims` `/proofread` `/humanize` `/submission-disclosures`
-- **Data / reproducibility:** `/data-analysis` `/did-event-study` `/simulation-study` `/audit-reproducibility` `/diagnose` `/replication-package` `/capture-environment` `/power-analysis` `/disclosure-check`
-- **Research / writing:** `/interview-me` `/lit-review` `/research-ideation` `/preregister` `/grant-proposal` `/data-management-plan`
-- **Meta / workflow:** `/commit` `/learn` `/new-skill` `/checkpoint` `/context-status` `/deep-audit` `/coauthor-brief` `/triage-inbox`
-
-Stata (`/stata-replication`), R packages (`/r-package-check`), TikZ (`/extract-tikz`, `/new-diagram`), and more — see the README for the complete index.
-
----
-
-<!-- CUSTOMIZE: Replace placeholder rows ([your-env], [.your-class]) with your own.
-     Delete the rows marked "(example — delete)" once you've added yours. -->
-
-## Beamer Custom Environments
-
-| Environment | Effect | Use Case |
-| --- | --- | --- |
-| `[your-env]` | [Description] | [When to use] |
-| `keybox` | Gold background box | Key points *(example — delete)* |
-| `definitionbox[Title]` | Blue-bordered titled box | Formal definitions *(example — delete)* |
-
-## Quarto CSS Classes
-
-| Class | Effect | Use Case |
-| --- | --- | --- |
-| `[.your-class]` | [Description] | [When to use] |
-| `.smaller` | 85% font | Dense content *(example — delete)* |
-| `.positive` | Green bold | Good annotations *(example — delete)* |
+**C — Dormant / ignore (slides + teaching template machinery):**
+`/create-lecture` `/compile-latex` `/deploy` `/qa-quarto` `/slide-excellence`
+`/translate-to-quarto` `/extract-tikz` `/new-diagram` `/syllabus` `/teach-from-paper`
+`/scaffold-exercises` `/pedagogy-review` `/visual-audit` — plus `Slides/ Quarto/ Preambles/ docs/`
+and the palette-/surface-sync scripts. Left on disk for clean upstream merges; not part of this workflow.
 
 ---
 
 ## Current Project State
 
-| Lecture | Beamer | Quarto | Key Content |
+| Section / RQ | Draft (report/) | Analysis | Key outputs |
 | --- | --- | --- | --- |
-| HelloWorld *(sample — delete when ready)* | `HelloWorld.tex` | `HelloWorld.qmd` | Minimal deck to verify setup |
-| 1: [Topic] | `Lecture01_Topic.tex` | `Lecture1_Topic.qmd` | [Brief description] |
+| Essay 2: disclosure × surprise → engagement | *(tbd)* | `scripts/stata/…` (R/Python tbd) | `Validation_OOS`, `Validation_Holm`, `Validation_CV_c1` |
+| *(add sections as work begins)* | | | |
+
+*Data lives on the author's machine (`Dropbox/.../Revised Version JM`), not in this repo. Update this table as drafts and analysis land here.*

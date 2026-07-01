@@ -39,35 +39,32 @@ Repeat
 
 ---
 
-## Quality Gates (No Exceptions)
+## Quality Gates (advisory for this project)
 
-| Score | Action |
-|-------|--------|
-| >= 80 | Ready to commit |
-| < 80  | Fix blocking issues |
+The numeric `quality_score.py` gate scores only `.qmd/.tex/.R` — not our `.md`/`.do`/`.py`
+artifacts. The **review skills are the real gate**: `/proofread` → `/humanize` →
+`/verify-claims` → `/review-paper` for prose; `/review-r` + `/audit-reproducibility`
+(+ `/stata-replication`) for analysis. See CLAUDE.md → "Quality Thresholds".
 
 ---
 
-## Non-Negotiables (Customize These)
+## Non-Negotiables
 
-<!-- Replace with YOUR project's locked-in preferences -->
-
-- [YOUR PATH CONVENTION] (e.g., `here::here()` for R, relative paths for LaTeX)
-- [YOUR SEED CONVENTION] (e.g., `set.seed()` once at top for stochastic code)
-- [YOUR FIGURE STANDARDS] (e.g., white bg, 300 DPI, custom theme)
-- [YOUR COLOR PALETTE] (e.g., institutional colors)
-- [YOUR TOLERANCE THRESHOLDS] (e.g., 1e-6 for point estimates)
+- **No hardcoded absolute paths in committed code.** Stata: define the project root once via a `global` (the `ROOT1`/`ROOT2` confirm-file pattern) and reference `${derived}` / `${tables}` everywhere. R: `here::here()`. Python: project-root-relative / `pathlib`.
+- **Seeds set once, explicitly, in every stochastic script** — and documented. Stata: `set seed` at the top; for repeated splits use a stated `base + r` scheme (as in the validation do-file). R: `set.seed()`. Python: a seeded `Generator` (`np.random.default_rng(seed)`).
+- **Figures are presentation-ready** — consistent theme, high-DPI (≥300), readable fonts, white background. Applies to Stata graphs, R (ggplot), and Python (matplotlib/plotnine) alike.
+- **Tables are presentation-ready** — polished, fully labeled, exported to a durable format (CSV + a formatted version); never raw console dumps in the report.
+- **Reproducibility tolerance** — headline numbers must reproduce to the precision reported in the draft; flag any near-miss rather than rounding it away. *(Set a firm numeric tolerance when we build the replication package — `[confirm]`.)*
 
 ---
 
 ## Preferences
 
-<!-- Fill in as you discover your working style -->
-
-**Visual:** [How you want figures/plots handled]
-**Reporting:** [Concise bullets? Detailed prose? Details on request?]
-**Session logs:** Always (post-plan, incremental, end-of-session)
-**Replication:** [How strict? Flag near-misses?]
+**Visual:** Presentation-ready figures **and** tables, always (explicit requirement — polish by default, don't wait to be asked).
+**Reporting:** Concise, lead with the numbers/answer, and be honest about caveats and power. *(inferred from working style — override anytime)*
+**Session logs:** Always (post-plan, incremental, end-of-session).
+**Replication:** Strict — flag near-misses, don't silently round.
+**Onboarding:** More check-ins during early sessions — work in small reviewable steps and pause at high-impact decisions rather than batching.
 
 ---
 
