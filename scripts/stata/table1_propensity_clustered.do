@@ -56,8 +56,8 @@ eststo m_rp
 display as result "Replies — joint test of class x propensity:"
 test 1.BM_handhash_NN1000val#c.c1_infl_disclose_rate 2.BM_handhash_NN1000val#c.c1_infl_disclose_rate 3.BM_handhash_NN1000val#c.c1_infl_disclose_rate
 
-* Per-SD versions (interpretable magnitudes), clustered
-eststo clear
+* Per-SD versions (interpretable magnitudes), clustered.
+* NOTE: do NOT `eststo clear` here — it would wipe m_rt/m_rp needed by esttab below.
 quietly reghdfe ln_retweetcount ib0.BM_handhash_NN1000val##c.z_prop $controls $prior, absorb($fes_abs) vce(cluster influencercode)
 eststo z_rt
 quietly reghdfe ln_replycount ib0.BM_handhash_NN1000val##c.z_prop $controls $prior, absorb($fes_abs) vce(cluster influencercode)
