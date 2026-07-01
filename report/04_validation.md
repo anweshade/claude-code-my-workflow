@@ -2,11 +2,12 @@
 
 <!-- Working draft (Markdown). Paste polished text into Word/Docs.
      Numbers are from scripts/stata/validation_moderators.do → ${tables}/Validation_*.csv
-     (run log 2026-07-01). Swap "disclosure surprise" for the final construct name;
-     replace `c1_disclose_surprise` etc. with reader-facing labels before submission. -->
+     (run log 2026-07-01). Construct reframed to influencer disclosure propensity; validation
+     numbers are identical for the identified classes (see §3 robustness for the two-step
+     bootstrap that separates this from a within-post surprise effect). -->
 
-Because the moderating role of **disclosure surprise** (`c1`) was identified from a set of
-fifteen candidate moderators, we subject it to three validation exercises designed to
+Because the moderating role of **influencer disclosure propensity** (`c1`) was identified from a
+set of fifteen candidate moderators, we subject it to three validation exercises designed to
 separate a genuine effect from a multiple-comparisons artifact or an overfit to our
 particular sample. The engagement outcomes are log-transformed counts,
 $\ln(1 + \text{retweets})$ and $\ln(1 + \text{replies})$ — the $+1$ retains posts with zero
@@ -17,8 +18,9 @@ are implemented in `scripts/stata/validation_moderators.do`.
 ## A. Family-wise correction (full sample)
 
 Estimating each of the fifteen moderators on the full sample and applying a **Holm
-step-down correction** (separately by outcome), disclosure surprise is the **only**
-moderator that remains significant for *either* outcome — and it survives for **both**:
+step-down correction** (separately by outcome), influencer disclosure propensity is the **only**
+moderator that remains significant for *either* outcome — and it survives for **both** (under
+naive clustered SEs; see §3 for the two-step bootstrap caveat):
 
 | Outcome | Raw joint *p* | Holm-adjusted *p* |
 |---|---|---|

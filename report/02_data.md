@@ -51,29 +51,25 @@ engagement posts are retained:
 
 Potential impressions are available in the raw data but not used in the current specification.
 
-## Key moderator: disclosure surprise (important caveat)
+## Key moderator: influencer disclosure propensity
 
-`c1_disclose_surprise` is defined as
+The moderator is the influencer's **disclosure propensity** — their baseline rate of disclosing
+sponsorships,
 $$
-S_{it} = \big|\,\mathbb{1}[\text{disclosed}_{it}] - \bar d_{j}\,\big|,
-\qquad \bar d_j = \text{influencer } j\text{'s mean disclosure rate (constant within influencer)},
+\bar d_j = \text{mean of } \mathbb{1}[\text{disclosed}_{it}] \text{ within influencer } j \text{ (constant within influencer)},
 $$
-so a post's "surprise" is how far its disclosure status departs from the creator's baseline
-disclosure propensity. Empirically it is bounded in $[0,1]$ and highly right-skewed
-(mean 0.003, SD 0.037).
+implemented as `c1_infl_disclose_rate`. (The pipeline also stores the equivalent magnitude form
+`c1_disclose_surprise` $=|\mathbb{1}[\text{disclosed}]-\bar d_j|$, which for the identified
+non-disclosed classes equals $\bar d_j$; it is bounded in $[0,1]$, mean 0.003, SD 0.037.)
 
-**Identification caveat (from the pipeline's own note, and consistent with the dropped
-coefficient in §3).** Because $\bar d_j$ is constant within influencer and $\mathbb{1}[\text{disclosed}]$
-is binary, $S_{it}$ takes only two values within an influencer. As a result:
-- `class 1 (disclosed) × surprise` is perfectly collinear with class 1 within influencer → **dropped** (this is why $\gamma_1$ is not identified in §3).
-- The identifying variation in `class 2 × surprise` and `class 3 × surprise` is the
-  **influencer-level baseline disclosure rate $\bar d_j$, not a tweet-level surprise signal.**
-
-**This reframes the interpretation:** the headline moderation is effectively *between-influencer*
-(undisclosed/organic content by creators with different disclosure propensities), not a
-within-post "surprise." The pipeline reports both `c1_disclose_surprise` and the mechanical
-decomposition `class k × c1_infl_disclose_rate` for transparency; they should agree. §3's
-"surprising undisclosed content" language should be tempered accordingly — see the flag in §3.
+**This is a between-influencer moderator by design.** Because $\bar d_j$ is constant within
+influencer, the interaction is identified from *cross-influencer* differences in disclosure
+habits: `class 1 (disclosed) × propensity` is collinear within influencer and drops (hence
+$\gamma_1$ is unidentified in §3), while `class 2/3 × propensity` compares undisclosed/organic
+content across creators of differing disclosure propensity. Inference is standard (influencer
+aggregate, not a generated regressor). A stricter *within-post* surprise measure (a first-stage
+residual) was also built; it is only suggestive under correct two-step inference (§3 robustness),
+which is why the between-influencer propensity result is the headline.
 
 ## Controls and fixed effects
 
@@ -99,7 +95,7 @@ persuasive). The last two are the candidate mechanism mediators (§3).
   1. 205 -> 150 influencer reduction between raw corpus and estimation file — document the filter.
   2. z_posts exact definition (cumulative posts? confirm).
   3. Hour FE time zone.
-  4. BIGGER: the disclosure-surprise identification caveat means §3's "surprise" interpretation
-     is really an influencer-level disclosure-propensity moderation. Reconcile §3 language and
-     decide whether c1_disclose_surprise or the c1_infl_disclose_rate decomposition is the
-     headline presentation. -->
+  4. RESOLVED: headline reframed to influencer disclosure PROPENSITY (between-influencer),
+     with within-post surprise as suggestive robustness. Still to do: report the
+     class × c1_infl_disclose_rate spec directly as Table 1, and re-standardize per-SD on the
+     rate. -->

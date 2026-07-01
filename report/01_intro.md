@@ -12,9 +12,9 @@ has come regulatory attention to **disclosure**: when creators are paid to promo
 they are expected to say so (the Federal Trade Commission's Endorsement Guides). A large
 literature studies whether disclosure helps or hurts sponsored-content performance
 (e.g., Boerman, Willemsen, and Van Der Aa 2017; Evans et al. 2017; Eisend et al. 2020;
-Cao and Belo 2023), generally framing disclosure as a binary "disclosed vs. not." Much less is known about how the **surprise** of a disclosure — how far a
-post's disclosure behavior departs from what the audience has come to expect from that
-creator — shapes engagement.
+Cao and Belo 2023), generally framing disclosure as a binary "disclosed vs. not." Much less is known about how an
+influencer's **disclosure propensity** — their track record of disclosing, and how a given brand
+post sits relative to it — shapes engagement.
 
 ## 2. Tension / gap
 
@@ -30,32 +30,35 @@ unflagged brand association may be processed very differently from a routine one
 
 ## 3. This paper
 
-We study how **disclosure surprise** moderates the relationship between a post's brand-match
-class (no match, disclosed, undisclosed, organic) and engagement, estimated separately for
-**retweets** and **replies**. Using **281,837 posts** by **[≈150]** influencers, we fit
-high-dimensional fixed-effects models (influencer, month, hour) with influencer-clustered
-standard errors, and interact each brand-match class with disclosure surprise.
+We study how an influencer's **disclosure propensity** (their baseline disclosure rate)
+moderates the relationship between a post's brand-match class (no match, disclosed, undisclosed,
+organic) and engagement, estimated separately for **retweets** and **replies**. Using **281,837
+posts** by **[≈150]** influencers, we fit high-dimensional fixed-effects models (influencer,
+month, hour) with influencer-clustered standard errors, and interact each brand-match class with
+the influencer's disclosure propensity.
 
 ## 4. What we find
 
-Surprise moves the two engagement modes in **opposite directions**. For **undisclosed** brand
-content, a one-standard-deviation increase in disclosure surprise is associated with about
-**+20% more retweets** but **−16% fewer replies**; **organic** content shows a comparable
-reply penalty (**−12%**). The pattern is not an artifact of specification search: disclosure
-surprise is the only one of fifteen candidate moderators to survive family-wise correction on
-both outcomes, and it replicates in the large majority of repeated cross-validation splits
-(§4). A **persuasion-knowledge** mechanism is consistent with the contrast — surprising
-undisclosed content evades recognition as advertising, earning uncritical amplification but
-little scrutinizing conversation (tentative; see §3).
+Disclosure propensity moves the two engagement modes in **opposite directions**. Among
+**undisclosed** brand content, a one-standard-deviation increase in the influencer's baseline
+disclosure rate is associated with about **+20% more retweets** but **−16% fewer replies**;
+**organic** content shows a comparable reply penalty (**−12%**). The pattern is the standout
+moderator under family-wise correction across fifteen candidates on both outcomes and replicates
+in most cross-validation splits (§4). A **persuasion-knowledge** reading fits: an undisclosed
+post from a habitual discloser is atypical and not read as advertising, earning uncritical
+amplification but little scrutinizing conversation. Because the moderator is influencer-level,
+this is a **between-influencer** contrast; a stricter within-post "surprise" test is only
+suggestive (see §3).
 
 ## 5. Contribution
 
 We contribute to the influencer-marketing literature (e.g., Hughes, Swaminathan, and Brooks
 2019; Lou and Yuan 2019; Leung et al. 2022) by (i) separating **amplification from conversation** and
-showing a disclosure moderator that pushes them apart; (ii) introducing **disclosure surprise**
-— expectedness, not just presence — as the operative construct; and (iii) subjecting the
-finding to an unusually demanding validation protocol (family-wise correction, repeated
-cross-validation, out-of-sample holdout).
+showing a moderator that pushes them apart; (ii) introducing **influencer disclosure propensity**
+— a creator's disclosure track record, not just a single post's presence/absence — as the
+operative moderator; and (iii) subjecting the finding to an unusually demanding validation
+protocol (family-wise correction, repeated cross-validation, out-of-sample holdout, and a
+two-step bootstrap that separates a between-influencer effect from a within-post one).
 
 ---
 
