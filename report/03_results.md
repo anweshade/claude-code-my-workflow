@@ -79,6 +79,12 @@ that creator, and audiences appear to amplify it more while engaging in less con
 **persuasion-knowledge** reading fits: relative to a habitual discloser's norm, an unflagged
 brand post is not read as advertising, so it is shared relatively uncritically (retweets) while
 prompting less of the scrutinizing conversation that recognized sponsorship attracts (replies).
+**However, formal mediation does not bear this out:** cluster-bootstrapped indirect effects
+through authenticity (`authentic_stdM`, `z_FirstPerson_Ratio`) and persuasion (`z_pv_score`,
+`persuasion`) mediators are all insignificant ($|z|<1.1$; `Mediation_propensity.csv`) — the
+signs mostly point the predicted way, but the mediator→engagement paths are too weak to carry an
+indirect effect. So the moderation is robust while its **channel remains an open question**; we
+report the persuasion-knowledge account as a *proposed* interpretation, not an established one.
 Because $\bar d_j$ is influencer-level, this is a **between-influencer** result — a difference
 across creators of differing disclosure habits, not a within-post effect.
 
